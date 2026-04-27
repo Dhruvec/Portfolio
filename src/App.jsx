@@ -194,7 +194,7 @@ const PROJECTS = [
   {
     title: 'GPT-2 Implementation',
     category: 'Deep Learning',
-    image: 'https://images.unsplash.com/photo-1620712943543-bcc4628c9757?q=80&w=1964&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1676299081847-824916de030a?q=80&w=1974&auto=format&fit=crop',
     link: 'https://github.com/Dhruvec/GPT-2'
   },
   {
