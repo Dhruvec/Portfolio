@@ -404,6 +404,8 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 10; /* Ensure text is always on top */
 }
 
 .contact-trigger {
@@ -419,10 +421,11 @@ section {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 5; /* Behind text but above other sections */
+  z-index: -1; /* Move to bottom-most layer */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .ghibli-reveal img {
