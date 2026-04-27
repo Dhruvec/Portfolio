@@ -230,19 +230,22 @@ const Projects = () => {
         
         <motion.div style={{ x }} className="projects-horizontal-list">
           {PROJECTS.map((project, i) => (
-            <motion.div
+            <motion.a
               key={project.title}
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
               className="project-card-horizontal"
             >
               <img src={project.image} alt={project.title} className="project-image" />
               <div className="project-info">
                 <p className="project-category">{project.category}</p>
                 <h3 className="project-name">{project.title}</h3>
-                <a href={project.link} target="_blank" rel="noreferrer" className="project-link">
+                <div className="project-link">
                   <ExternalLink size={20} color="#fff" />
-                </a>
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
       </div>
@@ -374,7 +377,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="container footer-content">
-        <div className="logo">DHRUV.</div>
+        <div className="logo">DHRUV</div>
         <div className="social-links">
           <a href="https://github.com/Dhruvec" target="_blank" rel="noreferrer"><Globe size={20} /></a>
           <a href="https://linkedin.com/in/dhruv-929265392/" target="_blank" rel="noreferrer"><User size={20} /></a>
