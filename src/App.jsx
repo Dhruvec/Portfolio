@@ -349,16 +349,39 @@ const Experience = () => {
 
 // ─── Contact ───
 const Contact = () => {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <section id="contact" className="contact">
       <div className="container contact-hero">
-        <motion.span 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="section-tag"
+        <div 
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="contact-trigger"
         >
-          Let's Talk
-        </motion.span>
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="section-tag"
+          >
+            Let's Talk
+          </motion.span>
+          
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -5 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 20, rotate: 5 }}
+                className="ghibli-reveal"
+              >
+                <img src="/ghibli-work.png" alt="Working" />
+                <div className="ghibli-glow"></div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
