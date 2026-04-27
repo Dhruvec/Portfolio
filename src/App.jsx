@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
+import { useEffect, useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useSpring, useTransform } from 'framer-motion'
 import Lenis from 'lenis'
 import { Mail, ExternalLink, ArrowRight, Code, Brain, Bot, Menu, X, Globe, User } from 'lucide-react'
 import './App.css'
@@ -212,21 +212,27 @@ const PROJECTS = [
 ]
 
 const Projects = () => {
-  return (
-    <section id="projects" className="projects">
-      <div className="container">
-        <span className="section-tag">Selected Works</span>
-        <h2 className="section-title">Projects that push <br />the boundaries.</h2>
+  const targetRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  })
 
-        <div className="projects-grid">
+  // Transform horizontal position based on vertical scroll
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"])
+
+  return (
+    <section ref={targetRef} id="projects" className="projects-scroll-container">
+      <div className="projects-sticky-wrapper">
+        <div className="container">
+          <span className="section-tag">Selected Works</span>
+          <h2 className="section-title">Projects that push <br />the boundaries.</h2>
+        </div>
+        
+        <motion.div style={{ x }} className="projects-horizontal-list">
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className="project-card"
+              className="project-card-horizontal"
             >
               <img src={project.image} alt={project.title} className="project-image" />
               <div className="project-info">
@@ -238,7 +244,7 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
