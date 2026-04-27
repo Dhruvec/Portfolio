@@ -370,9 +370,10 @@ const Contact = () => {
           <AnimatePresence>
             {isHovered && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, y: 20, rotate: -5 }}
-                animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: 20, rotate: 5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
                 className="ghibli-reveal"
               >
                 <img src="/ghibli-work.png" alt="Working" />
